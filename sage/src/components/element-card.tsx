@@ -6,7 +6,7 @@ import { useMemo } from "react";
 
 export const ElementCard = ({ element }: { element: Element }) => {
   return (
-    <div className="flex gap-2 px-2 border rounded-xl h-fit w-fit">
+    <div className=" select-none flex gap-2 px-2 border rounded-xl h-fit w-fit hover:border-red-400">
       <div>{element.emoji}</div>
       <div>{element.text}</div>
     </div>
