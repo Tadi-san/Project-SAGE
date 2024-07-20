@@ -3,3 +3,40 @@
 /server/node_modules
 /server/.env
 .env
+
+
+/node_modules
+
+sage/node_modules
+sage/.pnp
+sage/.pnp.js
+sage/.yarn/install-state.gz
+
+sage/# testing
+sage/coverage
+
+sage/# next.js
+sage/.next/
+sage/out/
+
+sage/# production
+sage/build
+
+sage/# misc
+sage/.DS_Store
+sage/*.pem
+
+sage/# debug
+sage/npm-debug.log*
+sage/yarn-debug.log*
+sage/yarn-error.log*
+
+sage/# local env files
+sage/.env*.local
+
+sage/# vercel
+sage/.vercel
+
+sage/# typescript
+sage/*.tsbuildinfo
+sage/next-env.d.ts
