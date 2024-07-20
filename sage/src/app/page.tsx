@@ -1,5 +1,7 @@
+import  ChoiceCardFullPicture  from '../components/ChoiceCardFullPicture';
+
 export default function Home() {
-    return (
-     <div>Home</div>
-    );
-  }
+  return (
+    <>Home</>
+  );
+}
