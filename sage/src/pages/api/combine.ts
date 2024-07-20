@@ -1,12 +1,8 @@
 import { Element, ElementModel } from "@/interfaces/element";
-import connectDb from "@/libs/connect-db";
+// import connectDb from "@/libs/connect-db";
 import type { NextApiRequest, NextApiResponse } from "next";
-import OpenAI from "openai";
-
-const openai = new OpenAI({
-  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
-});
-
+import Groq from "groq-sdk";
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 type ResponseData = {
   message: string;
   element?: Element;
@@ -25,24 +21,24 @@ export default async function handler(
     return;
   }
 
-  await connectDb();
+  // await connectDb();
 
   const word1 = (w1 > w2 ? w1 : w2).toLowerCase();
   const word2 = (w1 > w2 ? w2 : w1).toLowerCase();
 
-  const existingElement = await ElementModel.findOne({ word1, word2 });
-  if (existingElement) {
-    return res.status(200).json({
-      message: "element already exists",
-      element: {
-        emoji: existingElement.emoji,
-        text: existingElement.text,
-        discovered: false,
-      },
-    });
-  }
+  // const existingElement = await ElementModel.findOne({ word1, word2 });
+  // if (existingElement) {
+  //   return res.status(200).json({
+  //     message: "element already exists",
+  //     element: {
+  //       emoji: existingElement.emoji,
+  //       text: existingElement.text,
+  //       discovered: false,
+  //     },
+  //   });
+  // }
 
-  const chatCompletion = await openai.chat.completions.create({
+  const chatCompletion = await groq.chat.completions.create({
     messages: [
       {
         role: "system",
@@ -57,8 +53,8 @@ export default async function handler(
       },
       { role: "user", content: `"${word1}" and "${word2} ="` },
     ],
-    model: "gpt-3.5-turbo",
-    max_tokens: 512,
+    model: "llama3-8b-8192",
+    // max_tokens: 512,
   });
 
   const output = chatCompletion["choices"][0]["message"]["content"];
@@ -73,21 +69,21 @@ export default async function handler(
     text: splitOutput[1],
   };
 
-  const existingElement2 = await ElementModel.findOne({
-    text: result.text.toLowerCase(),
-  });
+  // const existingElement2 = await ElementModel.findOne({
+  //   text: result.text.toLowerCase(),
+  // });
 
-  if (existingElement2) {
-    result.emoji = existingElement2.emoji;
-  }
+  // if (existingElement2) {
+  //   result.emoji = existingElement2.emoji;
+  // }
 
-  const newElement = new ElementModel({
-    word1,
-    word2,
-    emoji: result.emoji,
-    text: result.text.toLowerCase(),
-  });
-  await newElement.save();
+  // const newElement = new ElementModel({
+  //   word1,
+  //   word2,
+  //   emoji: result.emoji,
+  //   text: result.text.toLowerCase(),
+  // });
+  // await newElement.save();
 
   return res.status(200).json({
     message: "new element created",

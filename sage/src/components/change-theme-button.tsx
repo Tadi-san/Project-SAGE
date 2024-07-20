@@ -8,7 +8,7 @@ export default function ChangeThemeButton() {
     <div
       className="cursor-pointer"
       onClick={() => {
-        setTheme(theme === "dark" ? "light" : "dark");
+        setTheme(theme === "light" ? "dark" : "light");
       }}
     >
       <Moon className="block dark:hidden" />
