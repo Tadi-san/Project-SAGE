@@ -7,9 +7,11 @@ const port = 5000;
 
 app.get('/get_quizzes', async (req, res) => {
   try {
-    const prompt = "Generate a quiz with 5 questions and their answers on the topic of mathematics.";
-    const quiz = await AIModel.generateText(prompt);
-    res.json({ quiz });
+    const prompt =
+    'Generate a quiz with 10 questions and their answers on the topic of basic mathematics. Return the quiz in the following JSON format only, with no additional text: { "quiz": [ { "question": "<Your question here>", "answers": { "a": "<Option A>", "b": "<Option B>", "c": "<Option C>", "d": "<Option D>" }, "correct": "<Correct answer option>" }, { "question": "<Your question here>", "answers": { "a": "<Option A>", "b": "<Option B>", "c": "<Option C>", "d": "<Option D>" }, "correct": "<Correct answer option>" } ] }';
+  
+    const quiz = JSON.parse(await AIModel.getChatCompletion(prompt));
+    res.json(quiz);
   } catch (error) {
     console.error('Error generating quiz:', error);
     res.status(500).send('An error occurred while generating the quiz.');

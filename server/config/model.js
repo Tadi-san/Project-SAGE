@@ -1,39 +1,35 @@
-const { Configuration, OpenAIApi } = require('openai');
+// models/groqAI.js
+const Groq = require("groq-sdk");
 require('dotenv').config();
 
-class AIModel {
-  static configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY,
-  });
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
-  static openai = new OpenAIApi(AIModel.configuration);
-
-  static async generateText(prompt) {
+class GroqAI {
+  static async getChatCompletion(prompt) {
     try {
-      const response = await AIModel.openai.createChatCompletion({
-        model: 'gpt-3.5-turbo',
-        messages: [{ role: 'user', content: prompt }],
+      const response = await groq.chat.completions.create({
+        messages: [{ role: "user", content: prompt }],
+        model: "llama3-8b-8192",
       });
-      return response.data.choices[0].message.content;
+      return response.choices[0]?.message?.content || "";
     } catch (error) {
-      console.error('Error generating text:', error);
+      console.error("Error generating chat completion:", error);
       throw error;
     }
   }
 
   static async generateImage(prompt) {
     try {
-      const response = await AIModel.openai.createImage({
-        prompt: prompt,
-        n: 1,
-        size: '512x512',
+      const response = await groq.image.generations.create({
+        prompt,
+        model: "image-model", // Replace with the appropriate model name
       });
-      return response.data.data[0].url;
+      return response.data[0]?.url || "";
     } catch (error) {
-      console.error('Error generating image:', error);
+      console.error("Error generating image:", error);
       throw error;
     }
   }
 }
 
-module.exports = AIModel;
+module.exports = GroqAI;
