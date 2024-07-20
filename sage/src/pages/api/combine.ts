@@ -49,7 +49,7 @@ export default async function handler(
         Try to answer with a new word that have an actual meaning. 
         ONLY answer in the following format. 
         
-        [emoji that best represent the text],[text in the same language as the 2 words]`,
+        [emoji that best describes the text],[text in the same language as the 2 words] `,
       },
       { role: "user", content: `"${word1}" and "${word2} ="` },
     ],

@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
+// import mongoose from "mongoose";
 
 const connectDB = async () => {
-  mongoose.set("strictQuery", true);
+  // mongoose.set("strictQuery", true);
 
   // if (!process.env.MONGO_URI) {
   //   throw new Error(
