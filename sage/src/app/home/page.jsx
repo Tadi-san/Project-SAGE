@@ -1,7 +1,7 @@
 "use client";
 import { useState } from 'react';
 import Image from 'next/image';
-
+import { redirect } from 'next/navigation';
 export default function Home() {
     const fakeButtonData = [
         {
@@ -76,6 +76,7 @@ export default function Home() {
     const [subButtons, setSubButtons] = useState([]);
 
     const handleButtonClick = (index) => {
+       console.log("first")
         setSelectedButton(index);
         SetContent(fakeButtonData[index].description);
         setSubButtons(fakeButtonData[index].subButtons);
@@ -105,7 +106,7 @@ export default function Home() {
                 <div className='mt-5 flex items-center flex-col gap-2'>
                 <div className='mt-5 flex justify-around flex-wrap gap-2'>
                     {fakeButtonData[selectedButton]?.subButtons?.map((subButton, index) => (
-                        <button key={index} className='border rounded-3xl border-[#52FFB8] px-2'>
+                        <button key={index} onClick={(e)=>{console.log('test'); window.location='details'; redirect('/detail');}} className='border rounded-3xl border-[#52FFB8] px-2'>
                             {subButton}
                         </button>
                     ))}
@@ -113,6 +114,12 @@ export default function Home() {
                     {selectedButton !== null && fakeButtonData[selectedButton]?.sage && (
                    <Image className=' opacity-' src={fakeButtonData[selectedButton].sage} alt={fakeButtonData[selectedButton]?.text} width={300} height={50} />
                     )}
+                </div>
+                <div className='flex flex-col'>
+                    take a random quiz    
+                    <button className='primary rounded text-green-400 bg-black p-4' onClick={(e)=>window.location='quiz'}>
+                        take a quiz
+                    </button>
                 </div>
             </div>
 

@@ -1,5 +1,6 @@
-import { redirect } from "next/navigation";
-
+import { redirect } from 'next/navigation';
 export default function Home() {
-  return redirect("/landing");
+  redirect('/landing');
+
+  return null; // Return null to prevent unnecessary rendering
 }
