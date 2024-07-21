@@ -5,7 +5,6 @@
 // const ChoiceCardFullPicture = () => {
 //     const [selectedChoice, setSelectedChoice] = useState(null);
 
-
 //     const handleCheckClick = () => {
 //         // Implement your logic to check the selected choice
 //         console.log("Checked choice:", selectedChoice);
@@ -127,39 +126,44 @@
 
 import React, { useState } from "react";
 
-const ChoiceCardFullPicture = ({ question, answers, selectedChoice, onChoiceSelect }) => {
+const ChoiceCardFullPicture = ({
+  question,
+  answers,
+  selectedChoice,
+  onChoiceSelect,
+}) => {
   return (
-    <div className="flex flex-row justify-center items-center h-screen bg-gradient-to-b from-gray-200 to-white font-sans">
-      <div className="bg-white rounded-lg shadow-md p-6 w-full max-w-4xl">
-        <div className="text-2xl font-bold text-gray-800 mb-4">
-          {question}
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {Object.entries(answers).map(([key, answer]) => (
-            <div
-              key={key}
-              className={`flex flex-col items-center cursor-pointer rounded-md p-4 transition-colors ${
-                selectedChoice === key ? "bg-blue-200" : "bg-gray-100 hover:bg-gray-200"
-              }`}
-              onClick={() => onChoiceSelect(key)}
-            >
-              <img
-                src={answer.image}
-                alt={`Choice ${key}`}
-                className="w-full h-48 rounded-md object-cover mb-3"
+    <div className="bg-white rounded-lg  p-6 w-full max-w-4xl">
+      <div className="text-2xl font-bold text-gray-800 mb-4">{question}</div>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        {Object.entries(answers).map(([key, answer]) => (
+          <div
+            key={key}
+            className={`flex flex-col items-center cursor-pointer rounded-md p-4 transition-colors ${
+              selectedChoice === key
+                ? "bg-blue-200"
+                : "bg-gray-100 hover:bg-gray-200"
+            }`}
+            onClick={() => onChoiceSelect(key)}
+          >
+            <img
+              src={answer.image}
+              alt={`Choice ${key}`}
+              className="w-full h-48 rounded-md object-cover mb-3"
+            />
+            <div className="flex flex-row justify-evenly">
+              <input
+                type="radio"
+                name="choice"
+                checked={selectedChoice === key}
+                className="mr-2"
               />
-              <div className="flex flex-row justify-evenly">
-                <input
-                  type="radio"
-                  name="choice"
-                  checked={selectedChoice === key}
-                  className="mr-2"
-                />
-                <span className="text-gray-800 text-xl font-bold">{answer.text}</span>
-              </div>
+              <span className="text-gray-800 text-xl font-bold">
+                {answer.text}
+              </span>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </div>
   );
