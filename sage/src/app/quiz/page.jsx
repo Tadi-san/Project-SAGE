@@ -113,7 +113,7 @@ const CapitalQuiz = () => {
   const [progress, setProgress] = useState(0);
   const [time, setTime] = useState(0);
 
-  const handleChoiceSelect = (choice: string) => {
+  const handleChoiceSelect = (choice) => {
     setSelectedChoice(choice);
   };
   const handleCheckClick = () => {
