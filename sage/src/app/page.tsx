@@ -4,3 +4,4 @@ export default function Home() {
 
   return null; // Return null to prevent unnecessary rendering
 }
+
