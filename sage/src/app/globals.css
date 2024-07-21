@@ -77,3 +77,10 @@ body {
   display: none; /* for Chrome, Safari, and Opera */
 }
 
+.service-item {
+  transition: transform 0.3s ease-in;
+}
+
+.service-item:hover {
+  transform: translateY(-15px);
+}
