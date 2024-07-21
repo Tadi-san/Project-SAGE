@@ -11,7 +11,7 @@ const Header = () => {
         <a href="/landing" className="text-lg font-bold hover:text-[#2092CF] ">
           Home
         </a>
-        <a href="/games" className="text-lg font-bold hover:text-[#2092CF]">
+        <a href="/alchemy" className="text-lg font-bold hover:text-[#2092CF]">
           Games
         </a>
         <a href="/quiz" className="text-lg font-bold hover:text-[#2092CF]">
