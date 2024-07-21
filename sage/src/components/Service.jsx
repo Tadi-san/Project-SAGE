@@ -1,16 +1,14 @@
-import React from "react";
-; // Assuming you have a separate CSS file
-
+import React from "react"; // Assuming you have a separate CSS file
 const Service = () => {
   return (
     <div className="flex items-center justify-center min-h-screen relative">
       <div className="hidden lg:block absolute bottom-[14rem] left-36 transform z-10 overflow-hidden">
         <div className="w-28 h-28 bg-[#BCE1F5] rounded-full"></div>
       </div>
-      
+
       <div className="relative py-16 overflow-hidden w-3/4 mx-auto">
-        <div className="absolute rounded-[30px] inset-0 bg-[#2092CF] h-64"></div>
-        
+        <div className="absolute rounded-[30px] inset-0 bg-[#1d5d1a] h-64"></div>
+
         <div className="relative z-10 container mx-auto px-4">
           <div className="flex lg:flex-row flex-col justify-between items-center mb-8">
             <h2 className="lg:text-3xl text-[20px] font-poppins font- ml-5 text-white">
@@ -26,7 +24,11 @@ const Service = () => {
             <div className="service-item">
               <div className="relative hover:ring-2 hover:ring-[#2092CF] transition-all rounded-[15px] p-12 m-4 bg-[#FAFAFA] text-black shadow-md transform translate-y-[-20px] h-80">
                 <div className="flex items-center justify-center text-4xl text-center mb-2">
-                  <img src={"./alarm.png"} className="w-[55px] h-[50px] text-center" alt="alarm" />
+                  <img
+                    src={"./alarm.png"}
+                    className="w-[55px] h-[50px] text-center"
+                    alt="alarm"
+                  />
                 </div>
                 <h3 className="text-xl font-semibold font-poppins text-[#5A5555] mb-6 mt-7">
                   Easy to use
@@ -39,7 +41,11 @@ const Service = () => {
             <div className="service-item">
               <div className="relative rounded-[15px] hover:ring-2 hover:ring-[#2092CF] transition-all bg-[#FAFAFA] text-black p-12 m-4 shadow-md transform translate-y-[-20px] h-80">
                 <div className="flex items-center justify-center text-4xl mb-2">
-                  <img src={"/bag.png"} className="w-[55px] h-[50px] text-center" alt="bag" />
+                  <img
+                    src={"/bag.png"}
+                    className="w-[55px] h-[50px] text-center"
+                    alt="bag"
+                  />
                 </div>
                 <h3 className="text-xl font-poppins font-semibold mb-6 mt-7 text-[#5A5555]">
                   Custom Booking page
@@ -53,7 +59,11 @@ const Service = () => {
             <div className="service-item">
               <div className="relative rounded-[15px] hover:ring-2 hover:ring-[#2092CF] transition-all bg-[#FAFAFA] text-black p-12 m-4 shadow-md transform translate-y-[-20px] h-80">
                 <div className="flex items-center justify-center text-4xl mb-2">
-                  <img src={"/tick.png"} className="w-[55px] h-[50px] text-center" alt="tick" />
+                  <img
+                    src={"/tick.png"}
+                    className="w-[55px] h-[50px] text-center"
+                    alt="tick"
+                  />
                 </div>
                 <h3 className="text-xl font-poppins font-semibold mb-6 mt-7 text-[#5A5555]">
                   Round the clock support
