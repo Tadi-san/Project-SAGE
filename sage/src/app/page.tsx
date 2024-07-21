@@ -1,7 +1,6 @@
-import  ChoiceCardFullPicture  from '../components/ChoiceCardFullPicture';
-
+import { redirect } from 'next/navigation';
 export default function Home() {
-  return (
-    <>Home</>
-  );
+  redirect('/landing');
+
+  return null; // Return null to prevent unnecessary rendering
 }
