@@ -1,174 +1,98 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import ChoiceCardFullPicture from "../../components/ChoiceCardFullPicture";
-const quizData = {
-  quiz: [
-    {
-      question: "What is the sum of 2+2?",
-      imageurl: "https://images.unsplash.com/photo-1626820000000-4b3b3b3b3b3b",
-      answers: {
-        a: "1",
-        b: "2",
-        c: "3",
-        d: "4",
-      },
-      correct: "d",
-    },
-    {
-      question: "What is the product of 3*5?",
-      answers: {
-        a: "10",
-        b: "12",
-        c: "15",
-        d: "20",
-      },
-      correct: "c",
-    },
-    {
-      question: "What is the result of 7-3?",
-      answers: {
-        a: "2",
-        b: "3",
-        c: "4",
-        d: "6",
-      },
-      correct: "c",
-    },
-    {
-      question: "What is the quotient of 12/3?",
-      answers: {
-        a: "2",
-        b: "3",
-        c: "4",
-        d: "6",
-      },
-      correct: "c",
-    },
-    {
-      question: "What is the value of x in the equation 2x = 6?",
-      answers: {
-        a: "1",
-        b: "3",
-        c: "2",
-        d: "4",
-      },
-      correct: "b",
-    },
-    {
-      question: "What is the result of 9+1?",
-      answers: {
-        a: "8",
-        b: "9",
-        c: "10",
-        d: "11",
-      },
-      correct: "c",
-    },
-    {
-      question: "What is the product of 4*4?",
-      answers: {
-        a: "12",
-        b: "13",
-        c: "16",
-        d: "20",
-      },
-      correct: "c",
-    },
-    {
-      question: "What is the result of 8-2?",
-      answers: {
-        a: "6",
-        b: "5",
-        c: "4",
-        d: "7",
-      },
-      correct: "a",
-    },
-    {
-      question: "What is the quotient of 24/4?",
-      answers: {
-        a: "6",
-        b: "5",
-        c: "9",
-        d: "8",
-      },
-      correct: "a",
-    },
-    {
-      question: "What is the value of y in the equation y+2 = 8?",
-      answers: {
-        a: "6",
-        b: "7",
-        c: "8",
-        d: "9",
-      },
-      correct: "a",
-    },
-  ],
-};
+import axios from "axios";
+import Loader from "@/components/Loader";
 
 const CapitalQuiz = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedChoice, setSelectedChoice] = useState(null);
   const [score, setScore] = useState(0);
   const [progress, setProgress] = useState(0);
-  const [time, setTime] = useState(0);
+  const [time, setTime] = useState(60);
+  const [quiz, setQuiz] = useState<{ quiz: any[] }>({ quiz: [] });
 
-  const handleChoiceSelect = (choice) => {
-    // console.log(choice);
-    setSelectedChoice(choice);
+  const fetchQuiz = async () => {
+    try {
+      await axios
+        .post("http://localhost:5000/api/get_quizzes")
+        .then((response) => {
+          setQuiz(response.data);
+          console.log(response.data);
+        })
+        .catch((error) => console.error(error));
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const handleCheckClick = (e) => {
+  const handleCheckClick = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    const correctAnswer = quizData.quiz[currentQuestionIndex].correct;
+    const correctAnswer = quiz.quiz[currentQuestionIndex].correct;
     if (selectedChoice === correctAnswer) {
       setScore(score + 1);
     }
-    if (currentQuestionIndex < quizData.quiz.length - 1) {
+    if (currentQuestionIndex < quiz.quiz.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setSelectedChoice(null);
-      setTime(0);
+      setTime(60);
     } else {
       setProgress(currentQuestionIndex + 1);
       alert(
-        `Quiz finished! Your score is ${score + (selectedChoice === correctAnswer ? 1 : 0)
-        }/${quizData.quiz.length}`
+        `Quiz finished! Your score is ${
+          score + (selectedChoice === correctAnswer ? 1 : 0)
+        }/${quiz.quiz.length}`
       );
-
     }
   };
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setTime((prevTime) => prevTime + 1);
+      setTime((prevTime) => prevTime - 1);
     }, 1000);
+    if (time <= 0) {
+      if (quiz.quiz[currentQuestionIndex + 1]) {
+        setCurrentQuestionIndex(currentQuestionIndex + 1);
+      }
+    }
     return () => clearInterval(timer);
-  }, [time]);
-
+  }, [time, currentQuestionIndex, quiz.quiz]);
 
   useEffect(() => {
+    setTime(60);
     setProgress(currentQuestionIndex);
   }, [currentQuestionIndex]);
 
-  const currentQuestion = quizData.quiz[currentQuestionIndex];
+  useEffect(() => {
+    fetchQuiz();
+  }, []);
+
+  if (quiz.quiz.length == 0) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <Loader />
+      </div>
+    );
+  }
+
+  const currentQuestion = quiz.quiz[currentQuestionIndex];
 
   return (
     <div className="flex flex-row justify-center items-center h-screen bg-gradient-to-b from-gray-200 to-white font-sans">
       <div className="bg-white rounded-lg shadow-md p-6  w-full max-w-4xl">
         <ProgressBar
           value={progress}
-          max={quizData.quiz.length}
-        // className="w-full mb-4"
+          max={quiz.quiz.length}
+          // className="w-full mb-4"
         />
         <div className="mt-4 text-xl">Score: {score}</div>
         <div className="mt-2 text-md">Time: {time} seconds</div>
         <ChoiceCardFullPicture
-          imageurl={currentQuestion.imageurl}
+          // imageurl={currentQuestion.imageurl}
           question={currentQuestion.question}
           answers={currentQuestion.answers}
           selectedChoice={selectedChoice}
-          onChoiceSelect={handleChoiceSelect}
+          setSelectedChoice={setSelectedChoice}
         />
         <button
           className="block w-full bg-green-500 hover:bg-green-600 text-white rounded-md py-3 px-4 mt-6 cursor-pointer transition-colors"
@@ -176,14 +100,12 @@ const CapitalQuiz = () => {
         >
           Check
         </button>
-
       </div>
     </div>
   );
 };
 
-export default CapitalQuiz;
-const ProgressBar = ({ value, max }: { value: number, max: number }) => {
+const ProgressBar = ({ value, max }: { value: number; max: number }) => {
   const percentage = (value / max) * 100;
   console.log(percentage, "%");
   return (
@@ -195,6 +117,7 @@ const ProgressBar = ({ value, max }: { value: number, max: number }) => {
     </div>
   );
 };
+
 // const QuizPage = () => {
 //   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 //   const [selectedChoice, setSelectedChoice] = useState(null);
@@ -270,3 +193,5 @@ const ProgressBar = ({ value, max }: { value: number, max: number }) => {
 //       </div>
 //     );
 //   };
+
+export default CapitalQuiz;
