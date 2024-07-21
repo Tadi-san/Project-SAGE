@@ -15,9 +15,9 @@ function App() {
       <Hero />
       <Service />
       <ThirdSec />
-      <How />
+      {/* <How /> */}
 
-      <AccordionDemo />
+      {/* <AccordionDemo /> */}
 
       <Bottom />
     </>

@@ -14,10 +14,11 @@ const Service = () => {
             <h2 className="lg:text-3xl text-[20px] font-poppins font- ml-5 text-white">
               Our best service for you!
             </h2>
-            <p className="text-white text-[14px] font-poppins mr-9 text-left max-w-md">
-              Our platform takes the hassle out of scheduling, allowing you to
-              focus on what really matters. Streamline your workflow and save
-              time with our intuitive and powerful scheduling tools.
+            <p className="text-white text-lg font-poppins mr-9 text-left max-w-md">
+              Our mission is to create an enhanced educational software
+              experience for children that leverages the latest advancements in
+              technology to ignite their curiosity, facilitate engaging
+              learning, and help them develop essential knowledge and skills.
             </p>
           </div>
           <div className="relative text-center z-20 grid grid-cols-1 md:grid-cols-3 mx-auto gap-4">
@@ -25,16 +26,19 @@ const Service = () => {
               <div className="relative hover:ring-2 hover:ring-[#2092CF] transition-all rounded-[15px] p-12 m-4 bg-[#FAFAFA] text-black shadow-md transform translate-y-[-20px] h-80">
                 <div className="flex items-center justify-center text-4xl text-center mb-2">
                   <img
-                    src={"./alarm.png"}
+                    src={"./fun.png"}
                     className="w-[55px] h-[50px] text-center"
                     alt="alarm"
                   />
                 </div>
                 <h3 className="text-xl font-semibold font-poppins text-[#5A5555] mb-6 mt-7">
-                  Easy to use
+                  Fun
                 </h3>
                 <p className="lg:text-[16px] font-poppins text-[10px] text-[#5A5555]">
-                  The page is designed for effortless use and seamless access.
+                  The generative AI capabilities will allow for the creation of
+                  dynamic, personalized quizzes that provide immediate feedback,
+                  reinforce key concepts, and challenge children in a fun and
+                  rewarding way.
                 </p>
               </div>
             </div>
@@ -42,17 +46,19 @@ const Service = () => {
               <div className="relative rounded-[15px] hover:ring-2 hover:ring-[#2092CF] transition-all bg-[#FAFAFA] text-black p-12 m-4 shadow-md transform translate-y-[-20px] h-80">
                 <div className="flex items-center justify-center text-4xl mb-2">
                   <img
-                    src={"/bag.png"}
+                    src={"/game.png"}
                     className="w-[55px] h-[50px] text-center"
                     alt="bag"
                   />
                 </div>
                 <h3 className="text-xl font-poppins font-semibold mb-6 mt-7 text-[#5A5555]">
-                  Custom Booking page
+                  Game based
                 </h3>
                 <p className="lg:text-[16px] font-poppins text-[10px] text-[#5A5555]">
-                  Enhance your professional business with a customized booking
-                  page.
+                  The integration of game-based mechanics, such as scoring
+                  systems, challenges, and rewards, will help make the learning
+                  process more enjoyable, motivating, and memorable for
+                  children.
                 </p>
               </div>
             </div>
@@ -60,17 +66,19 @@ const Service = () => {
               <div className="relative rounded-[15px] hover:ring-2 hover:ring-[#2092CF] transition-all bg-[#FAFAFA] text-black p-12 m-4 shadow-md transform translate-y-[-20px] h-80">
                 <div className="flex items-center justify-center text-4xl mb-2">
                   <img
-                    src={"/tick.png"}
+                    src={"/ai.png"}
                     className="w-[55px] h-[50px] text-center"
                     alt="tick"
                   />
                 </div>
                 <h3 className="text-xl font-poppins font-semibold mb-6 mt-7 text-[#5A5555]">
-                  Round the clock support
+                  AI Assistance
                 </h3>
                 <p className="lg:text-[16px] font-poppins text-[10px] text-[#5A5555]">
-                  Anytime, Anywhere, your customers can access and book an
-                  appointment.
+                  By understanding each child's progress, learning patterns, and
+                  strengths, the AI can adjust the pace, difficulty, and
+                  delivery of the content, creating a more personalized and
+                  effective learning journey.
                 </p>
               </div>
             </div>

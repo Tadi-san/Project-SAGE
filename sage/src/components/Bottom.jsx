@@ -1,6 +1,4 @@
-
 // import logo from '/logo.png'
-
 
 const Bottom = () => {
   return (
@@ -9,13 +7,12 @@ const Bottom = () => {
         <div class="md:flex md:justify-between">
           <div class="mb-6 md:mb-0 flex justify-start text-left flex-col gap-2">
             <a class="flex flex-col justify-start items-start gap-1">
-              <img src={"/logo.png"} class="h-12 me-3" />
+              <img src={"/slogo.png"} class="h-12 me-3" />
               <span class="text-3xl font-semibold whitespace-nowrap mt-3 font-poppins hover:text-[#2092CF] text-black">
-                Appoint
+                Sage
               </span>
               <span class=" font-poppins font-light ">
-                Simplifying your booking experience <br /> with Seamless
-                Appointments
+                Unlock your child's potential with fun learning
               </span>
             </a>
           </div>
@@ -88,7 +85,7 @@ const Bottom = () => {
         <div class="sm:flex sm:items-center sm:justify-between">
           <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">
             {" "}
-            <a>© 2024 Appoint Inc. All rights reserved.</a>
+            <a>© 2024 Sage Inc. All rights reserved.</a>
           </span>
           <div class="flex mt-4 sm:justify-center sm:mt-0">
             <a
