@@ -11,6 +11,7 @@ const CapitalQuiz = () => {
   const [progress, setProgress] = useState(0);
   const [time, setTime] = useState(60);
   const [quiz, setQuiz] = useState<{ quiz: any[] }>({ quiz: [] });
+  const [quizComplete, setQuizComplete] = useState(false);
 
   const fetchQuiz = async () => {
     try {
