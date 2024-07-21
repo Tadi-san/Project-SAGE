@@ -34,7 +34,7 @@ function Details() {
           fskldjhf sk
         </p>
       </div>
-      <div className=""></div>
+      <div className="">AI ASSISTANT AND CHATBOT HERE</div>
     </div>
   );
 }
